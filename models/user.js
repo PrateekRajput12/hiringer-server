@@ -2,15 +2,27 @@ import { number } from "framer-motion";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    firstName: {
+    name: {
         type: String,
         required: true
     },
-    lastName: {
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
         type: String,
         required: true
+    }, role: {
+        type: String,
+        enum: ["HR", "Interviewer", "Manager"],
+        required: true
     },
-    age: {
-        type: number,
-    },
-})
+    isActive: {
+        type: Boolean,
+        default: true
+    }
+
+
+}, { timestamps: true })
